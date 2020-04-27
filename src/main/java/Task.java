@@ -18,10 +18,6 @@ class Task {
         int valueB = getIntFromConsole(userName, "второе число", false);
 
 
-// объеденить все в один цикл, сделать дополнительную проверку в одном цикле(try+catch/if)
-// меняй isInputCorrect
-// в нужный момент использовать break/continue
-// использовать дебагер(следуй шаг за шагом отследивая значения переменных(состояние программы))
 
         long derivative = (long) valueA * valueB;
         System.out.println("Произведение=" + derivative);
@@ -73,3 +69,7 @@ class Task {
         System.out.println(String.format(messageTemplate, userName, inputName));
     }
 }
+// объеденить все в один цикл, сделать дополнительную проверку в одном цикле(try+catch/if)
+// меняй isInputCorrect
+// в нужный момент использовать break/continue
+// использовать дебагер(следуй шаг за шагом отследивая значения переменных(состояние программы))

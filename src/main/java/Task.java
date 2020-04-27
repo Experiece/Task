@@ -17,8 +17,6 @@ class Task {
 
         int valueB = getIntFromConsole(userName, "второе число", false);
 
-
-
         long derivative = (long) valueA * valueB;
         System.out.println("Произведение=" + derivative);
         double quotient = (double) valueA / valueB;
@@ -28,10 +26,8 @@ class Task {
         long residual = valueA - valueB;
         System.out.println("Разноцть=" + residual);
 
-
         System.out.println("Сумма всех чисел выше=" + (derivative + quotient + sum + residual));
     }
-
 
     static int getIntFromConsole(String userName, String inputName, boolean isCanBeZero) {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
@@ -62,7 +58,6 @@ class Task {
         }
         return outputValue;
     }
-
 
     static void inputRequest(String userName, String inputName) {
         String messageTemplate = "%s, введите %s от -2147483648 до 2147483647 и нажмите Enter";

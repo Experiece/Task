@@ -15,6 +15,7 @@ class Task {
             }
         }
     }
+
     public static int convertToInt(String inputValue) {
         int outputValue = 0;
         try {

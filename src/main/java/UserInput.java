@@ -3,24 +3,36 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class UserInput {
-    private static BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+    private static final BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
     public static String getUserName() throws IOException {
         System.out.println("Введите имя пользователя:");
         return reader.readLine();
     }
 
-    public static int getIntFromConsole(String userName, String inputName, boolean isCanBeZero) {
+    public static int getIntFromConsole(String consoleMessage, boolean isCanBeZero) {
+
+        return getIntFromConsole(consoleMessage, 0, Integer.MAX_VALUE, isCanBeZero);
+    }
+
+    public static int getIntFromConsole(String consoleMessage, int minValue, int maxValue, boolean isCanBeZero) {
 
         int outputValue = 0;
         boolean isInputCorrect = false;
         while (!isInputCorrect) {
-            Task.inputRequest(userName, inputName);
+            if (!consoleMessage.equals("")) {
+                System.out.println(consoleMessage);
+            }
             try {
                 outputValue = Task.convertToInt(reader.readLine());
+
+                if ((outputValue < minValue) || (outputValue > maxValue)) {
+                    continue;
+                }
                 if ((!isCanBeZero) && (outputValue == 0)) {
                     continue;
                 }
+
                 isInputCorrect = true;
             } catch (Exception y) {
                 isInputCorrect = false;
@@ -29,19 +41,15 @@ public class UserInput {
         return outputValue;
     }
 
-    public static int getUserChoice() throws IOException {
-        System.out.println("выберите тип операции которую вы хотите соверщить над числами:");
-        System.out.println("1)Узнать наибольшее из двух чисел");
-        System.out.println("2)Вычислить значение наибольшего числа возведенного в степень наименьшего из 4 введенных " +
-                "чисел(различных, не равных 0)");
-        System.out.println("3)Вычислить НОК и НОД 2 чисел(различных, не равных 0).");
-        System.out.println("4)Вычислить сумму, разность, произведение, частное и остаток от деления 2 чисел");
-        System.out.println("5) Вычислить сумму всех значений из пункта 4");
-        System.out.println("6) Вычислить факториал разности 2 введенных чисел");
+    public static int getUserChoice(String userName) throws IOException {
+        String message = (userName + ", выберите тип операции которую вы хотите соверщить над числами:" +
+                "\n1 )Узнать наибольшее из двух чисел" +
+                "\n2) Вычислить значение наибольшего числа возведенного в степень наименьшего из 4 введенных чисел(различных, не равных 0)" +
+                "\n3) Вычислить НОК и НОД 2 чисел(различных, не равных 0)." +
+                "\n4) Вычислить сумму, разность, произведение, частное и остаток от деления 2 чисел" +
+                "\n5) Вычислить сумму всех значений из пункта 4" +
+                "\n6) Вычислить факториал разности 2 введенных чисел");
 
-        String userChoice;
-        userChoice = reader.readLine();
-        return Integer.parseInt(userChoice);
-
+        return getIntFromConsole(message, 1, 6, false);
     }
 }

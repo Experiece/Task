@@ -2,14 +2,15 @@ import java.io.IOException;
 
 class Task {
     public static void main(String[] args) throws InterruptedException, IOException {
+
         System.out.println("Здравствуйте!");
         Thread.sleep(2000);
         String userName = UserInput.getUserName();
 
         while (true) {
             Operations.cases(userName);
-            System.out.println("Хотите ли вы продолжить операции? \n1 - да \n2 - нет");
-            int A = UserInput.getIntFromConsole(userName, "число", false);
+            String message = "Хотите ли вы продолжить операции? \n1 - да \n2 - нет";
+            int A = UserInput.getIntFromConsole(message, 1, 2, false);
             if (A == 2) {
                 return;
             }
@@ -27,9 +28,9 @@ class Task {
         return outputValue;
     }
 
-    public static void inputRequest(String userName, String inputName) {
+    public static String createInputRequest(String userName, String inputName) {
         String messageTemplate = "%s, введите %s от -2147483648 до 2147483647 и нажмите Enter";
-        System.out.println(String.format(messageTemplate, userName, inputName));
+        return String.format(messageTemplate, userName, inputName);
     }
 
     public static void whatIsBigger(int valueA, int valueB) {
@@ -66,4 +67,3 @@ class Task {
 // меняй isInputCorrect
 // в нужный момент использовать break/continue
 // использовать дебагер(следуй шаг за шагом отследивая значения переменных(состояние программы))
-//ку

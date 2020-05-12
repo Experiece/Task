@@ -62,7 +62,27 @@ class Task {
 
         return result;
     }
-}
+    public static int findSimpleMultipliers(int x, double sqrt, int currentValue, int multiplier) {
+        int x = 660;
+        double sqrt = Math.sqrt(x);
+        int currentValue = x;
+        int multiplier = 2;
+        while ((currentValue > 1) && (multiplier <= sqrt)) {
+            if (currentValue % multiplier == 0) {
+                System.out.print(multiplier + " ");
+                currentValue /= multiplier;
+            } else if (multiplier == 2) {
+                multiplier++;
+            } else {
+                multiplier += 2;
+            }
+        }
+        if (currentValue != 1) {
+            System.out.print(currentValue);
+        }
+        return currentValue;
+    }
+    }
 // объеденить все в один цикл, сделать дополнительную проверку в одном цикле(try+catch/if)
 // меняй isInputCorrect
 // в нужный момент использовать break/continue

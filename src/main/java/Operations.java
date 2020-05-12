@@ -37,7 +37,8 @@ public class Operations {
     }
 
     public static void case3(String userName) {
-
+        int valueA = UserInput.getIntFromConsole(Task.createInputRequest(userName, "первое число"), false);
+        int valueB = UserInput.getIntFromConsole(Task.createInputRequest(userName, "второе число"), false);
     }
 
     public static void case4(String userName) {

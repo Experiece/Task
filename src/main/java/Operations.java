@@ -1,4 +1,8 @@
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Set;
+
 
 public class Operations {
     // toDo придумать более удачное название для cases
@@ -24,7 +28,11 @@ public class Operations {
     public static void case1(String userName) {
         int valueA = UserInput.getIntFromConsole(Task.createInputRequest(userName, "первое число"), true);
         int valueB = UserInput.getIntFromConsole(Task.createInputRequest(userName, "второе число"), false);
-        Task.whatIsBigger(valueA, valueB);
+        if (valueA == valueB) {
+            System.out.println("\nЧисла равны");
+            return;
+        }
+        System.out.println("\nНаибольшее число:" + Math.max(valueA, valueB));
     }
 
     public static void case2(String userName) {
@@ -39,7 +47,52 @@ public class Operations {
     public static void case3(String userName) {
         int valueA = UserInput.getIntFromConsole(Task.createInputRequest(userName, "первое число"), false);
         int valueB = UserInput.getIntFromConsole(Task.createInputRequest(userName, "второе число"), false);
+        ArrayList<Integer> arrayA = MathOperations.primeFactorization(valueA);
+        ArrayList<Integer> arrayB = MathOperations.primeFactorization(valueB);
+
+        HashMap<Integer, Integer> mapA = new HashMap<>();
+        HashMap<Integer, Integer> mapB = new HashMap<>();
+
+        for (int key : arrayA) {
+            int oldValue = 0;
+            try {
+                oldValue = mapA.get(key);
+            } catch (Exception ignored) {
+            }
+            int newValue = oldValue + 1;
+            mapA.put(key, newValue);
+        }
+        for (int key : arrayB) {
+            int value = 0;
+            try {
+                value = mapB.get(key);
+            } catch (Exception ignored) {
+            }
+            mapB.put(key, value + 1);
+        }
+        Set<Integer> keySet = mapA.keySet();
+        HashMap<Integer, Integer> resultMap = new HashMap<>();
+        for (int key : keySet) {
+            int aValues = 0;
+            int bValues = 0;
+            try {
+                aValues = mapA.get(key);
+                bValues = mapB.get(key);
+            } catch (Exception ignored) {
+            }
+            if (aValues == 0 || bValues == 0) {
+                continue;
+            }
+            resultMap.put(key, Math.min(aValues, bValues));
+        }
+        Set<Integer> keySet2 = resultMap.keySet();
+        int NOD = 1;
+        for (int key : keySet2) {
+            NOD *= Math.pow(key, resultMap.get(key));
+        }
+        System.out.println("NOD=" + NOD);
     }
+
 
     public static void case4(String userName) {
         int valueA = UserInput.getIntFromConsole(Task.createInputRequest(userName, "первое число"), true);
@@ -85,3 +138,12 @@ public class Operations {
 }
 //switch case - изучить и применить
 // тернарный оператор - изучить(типа if else)
+
+//for (int a : arrayA) {
+//        for (int b : arrayB) {
+//        if (a == b) {
+//        System.out.println(a);
+//        break;
+//        }
+//        }
+//        }

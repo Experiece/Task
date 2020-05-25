@@ -1,4 +1,7 @@
 import java.io.IOException;
+import java.util.ArrayList;
+
+import static java.lang.StrictMath.sqrt;
 
 class Task {
     public static void main(String[] args) throws InterruptedException, IOException {
@@ -33,19 +36,6 @@ class Task {
         return String.format(messageTemplate, userName, inputName);
     }
 
-    public static void whatIsBigger(int valueA, int valueB) {
-        if (valueA > valueB) {
-            System.out.println(valueA + " - наибольшее число");
-        }
-        if (valueA < valueB) {
-            System.out.println(valueB + " - наибольшее число");
-        }
-        if (valueA == valueB) {
-            System.out.println("\nЧисла равны\n");
-        }
-
-    }
-
     public static BaseOperationsResult calculateBaseOperations(int valueA, int valueB) {
         BaseOperationsResult result;
         result = new BaseOperationsResult();
@@ -62,27 +52,40 @@ class Task {
 
         return result;
     }
-    public static int findSimpleMultipliers(int x, double sqrt, int currentValue, int multiplier) {
-        int x = 660;
-        double sqrt = Math.sqrt(x);
-        int currentValue = x;
-        int multiplier = 2;
-        while ((currentValue > 1) && (multiplier <= sqrt)) {
-            if (currentValue % multiplier == 0) {
-                System.out.print(multiplier + " ");
-                currentValue /= multiplier;
-            } else if (multiplier == 2) {
-                multiplier++;
-            } else {
-                multiplier += 2;
+
+    public static int findSimpleMultipliers(int potentialPrimeNumber, int currentValue, int multiplier) {
+        ArrayList<Integer> primeNumbersArr = new ArrayList<>();
+
+        for (potentialPrimeNumber = 2; potentialPrimeNumber < 100; potentialPrimeNumber++) {
+            boolean isPrime = true;
+            for (int i = 2; i <= sqrt(potentialPrimeNumber); i++) {
+                int mod = potentialPrimeNumber % i;
+                if (mod == 0) {
+                    isPrime = false;
+                    break;
+                }
+            }
+
+            if (isPrime) {
+                System.out.println(potentialPrimeNumber);
+                primeNumbersArr.add(potentialPrimeNumber);
             }
         }
-        if (currentValue != 1) {
-            System.out.print(currentValue);
+
+        int inputNumber = 97;
+
+        for (int i = 0; i < primeNumbersArr.size(); i++) {
+
+            int mod = inputNumber % primeNumbersArr.get(i);
+            if (mod == 0) {
+                System.out.println(primeNumbersArr.get(i));
+                inputNumber = inputNumber / primeNumbersArr.get(i);
+                i--;
+            }
         }
-        return currentValue;
+        return inputNumber;
     }
-    }
+}
 // объеденить все в один цикл, сделать дополнительную проверку в одном цикле(try+catch/if)
 // меняй isInputCorrect
 // в нужный момент использовать break/continue

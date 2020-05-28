@@ -10,12 +10,12 @@ public class UserInput {
         return reader.readLine();
     }
 
-    public static int getIntFromConsole(String consoleMessage, boolean isCanBeZero) {
+    public static int getIntFromConsole(String consoleMessage, boolean isCanBeZero, boolean isCanBeNegative) {
 
-        return getIntFromConsole(consoleMessage, 0, Integer.MAX_VALUE, isCanBeZero);
+        return getIntFromConsole(consoleMessage, 0, Integer.MAX_VALUE, isCanBeZero, isCanBeNegative);
     }
 
-    public static int getIntFromConsole(String consoleMessage, int minValue, int maxValue, boolean isCanBeZero) {
+    public static int getIntFromConsole(String consoleMessage, int minValue, int maxValue, boolean isCanBeZero, boolean isCanBeNegative) {
 
         int outputValue = 0;
         boolean isInputCorrect = false;
@@ -29,13 +29,12 @@ public class UserInput {
                 if ((outputValue < minValue) || (outputValue > maxValue)) {
                     continue;
                 }
-                if ((!isCanBeZero) && (outputValue == 0)) {
+                if ((!isCanBeZero) && (outputValue == 0) && isCanBeNegative) {
                     continue;
                 }
 
                 isInputCorrect = true;
-            } catch (Exception y) {
-                isInputCorrect = false;
+            } catch (Exception ignored) {
             }
         }
         return outputValue;
@@ -50,6 +49,6 @@ public class UserInput {
                 "\n5) Вычислить сумму всех значений из пункта 4" +
                 "\n6) Вычислить факториал разности 2 введенных чисел");
 
-        return getIntFromConsole(message, 1, 6, false);
+        return getIntFromConsole(message, 1, 6, false,true);
     }
 }

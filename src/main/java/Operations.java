@@ -25,28 +25,43 @@ public class Operations {
         }
     }
 
+
     public static void case1(String userName) {
-        int valueA = UserInput.getIntFromConsole(Task.createInputRequest(userName, "первое число"), true);
-        int valueB = UserInput.getIntFromConsole(Task.createInputRequest(userName, "второе число"), false);
+
+        int valueA = UserInput.getIntFromConsole(Task.createInputRequest(userName, "первое"), true, true);
+        int valueB = UserInput.getIntFromConsole(Task.createInputRequest(userName, "второе"), true, true);
         if (valueA == valueB) {
             System.out.println("\nЧисла равны");
             return;
         }
-        System.out.println("\nНаибольшее число:" + Math.max(valueA, valueB));
+        System.out.println("\nНаибольшее число: " + Math.max(valueA, valueB));
     }
+
 
     public static void case2(String userName) {
 
-        int valueA = UserInput.getIntFromConsole(Task.createInputRequest(userName, "первое число"), false);
-        int valueB = UserInput.getIntFromConsole(Task.createInputRequest(userName, "второе число"), false);
-        int valueC = UserInput.getIntFromConsole(Task.createInputRequest(userName, "третье число"), false);
-        int valueD = UserInput.getIntFromConsole(Task.createInputRequest(userName, "четвёртое число"), false);
+        int valueA = UserInput.getIntFromConsole(Task.createInputRequest(userName, "первое"), false, false);
+        int valueB = UserInput.getIntFromConsole(Task.createInputRequest(userName, "второе"), false, false);
+        int valueC = UserInput.getIntFromConsole(Task.createInputRequest(userName, "третье"), false, false);
+        int valueD = UserInput.getIntFromConsole(Task.createInputRequest(userName, "четвёртое"), false, false);
 
+        int maxAB = Math.max(valueA, valueB);
+        int maxCD = Math.max(valueC, valueD);
+        int absoluteMax = Math.max(maxAB, maxCD);
+
+        int minAB = Math.min(valueA, valueB);
+        int minCD = Math.min(valueC, valueD);
+        int absoluteMin = Math.min(minAB, minCD);
+
+        System.out.println("Наибольшее число: " + absoluteMax +
+                " возводим в степень равную наименьшему числу: " + absoluteMin);
+        System.out.println(Math.pow(absoluteMax, absoluteMin));
     }
 
+
     public static void case3(String userName) {
-        int valueA = UserInput.getIntFromConsole(Task.createInputRequest(userName, "первое число"), false);
-        int valueB = UserInput.getIntFromConsole(Task.createInputRequest(userName, "второе число"), false);
+        int valueA = UserInput.getIntFromConsole(Task.createInputRequest(userName, "первое число"), false, false);
+        int valueB = UserInput.getIntFromConsole(Task.createInputRequest(userName, "второе число"), false, false);
         ArrayList<Integer> arrayA = MathOperations.primeFactorization(valueA);
         ArrayList<Integer> arrayB = MathOperations.primeFactorization(valueB);
 
@@ -91,36 +106,44 @@ public class Operations {
             NOD *= Math.pow(key, resultMap.get(key));
         }
         System.out.println("NOD=" + NOD);
+        int NOK = valueA * valueB / NOD;
+        System.out.println("NOK=" + NOK);
     }
 
 
     public static void case4(String userName) {
-        int valueA = UserInput.getIntFromConsole(Task.createInputRequest(userName, "первое число"), true);
-        int valueB = UserInput.getIntFromConsole(Task.createInputRequest(userName, "второе число"), false);
+        int valueA = UserInput.getIntFromConsole(Task.createInputRequest(userName, "первое число"), true, true);
+        int valueB = UserInput.getIntFromConsole(Task.createInputRequest(userName, "второе число"), false, true);
 
-        BaseOperationsResult result = Task.calculateBaseOperations(valueA, valueB);
+        BaseOperationsResult result = calculateBaseOperations(valueA, valueB);
         System.out.println("Произведение=" + result.derivative);
         System.out.println("Частное=" + result.quotient);
         System.out.println("Сумма=" + result.sum);
         System.out.println("Разноцть=" + result.residual);
-        System.out.println("Остаток от деления=" + result.ostatok);
+        System.out.println("Остаток от деления=" + result.mod);
     }
+
 
     public static void case5(String userName) {
+        int valueA = UserInput.getIntFromConsole(Task.createInputRequest(userName, "первое число"), true, true);
+        int valueB = UserInput.getIntFromConsole(Task.createInputRequest(userName, "второе число"), false, true);
 
+        BaseOperationsResult result = calculateBaseOperations(valueA, valueB);
+        System.out.println(result.derivative + result.quotient + result.sum + result.residual + result.mod);
     }
 
+
     public static void case6(String userName) {
-        int valueA = UserInput.getIntFromConsole(Task.createInputRequest(userName, "первое число"), true);
-        int valueB = UserInput.getIntFromConsole(Task.createInputRequest(userName, "второе число"), false);
+        int valueA = UserInput.getIntFromConsole(Task.createInputRequest(userName, "первое число"), true, false);
+        int valueB = UserInput.getIntFromConsole(Task.createInputRequest(userName, "второе число"), false, false);
         if (valueA > valueB) {
             int AminusB = valueA - valueB;
-            int outputAminusB = calculateFactorial(AminusB);
+            int outputAminusB = MathOperations.calculateFactorial(AminusB);
             System.out.println(outputAminusB);
         }
         if (valueB > valueA) {
             int BminusA = valueB - valueA;
-            int outputBminusA = calculateFactorial(BminusA);
+            int outputBminusA = MathOperations.calculateFactorial(BminusA);
             System.out.println(outputBminusA);
         }
         if (valueA == valueB) {
@@ -128,22 +151,17 @@ public class Operations {
         }
     }
 
-    static int calculateFactorial(int n) {
-        int result = 1;
-        for (int i = 1; i <= n; i++) {
-            result = result * i;
-        }
+    public static BaseOperationsResult calculateBaseOperations(int valueA, int valueB) {
+        BaseOperationsResult result;
+        result = new BaseOperationsResult();
+
+        result.derivative = (long) valueA * valueB;
+        result.quotient = (double) valueA / valueB;
+        result.sum = (long) valueA + valueB;
+        result.residual = valueA - valueB;
+        result.mod = valueA % valueB;
         return result;
     }
 }
 //switch case - изучить и применить
 // тернарный оператор - изучить(типа if else)
-
-//for (int a : arrayA) {
-//        for (int b : arrayB) {
-//        if (a == b) {
-//        System.out.println(a);
-//        break;
-//        }
-//        }
-//        }

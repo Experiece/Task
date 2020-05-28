@@ -3,5 +3,5 @@ public class BaseOperationsResult {
     double quotient;
     long sum;
     long residual;
-    int ostatok;
+    int mod;
 }

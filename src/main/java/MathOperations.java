@@ -6,7 +6,7 @@ public class MathOperations {
     public static ArrayList<Integer> primeFactorization(int value) {
         ArrayList<Integer> primeNumbersArr = new ArrayList<>();
         int potentialPrimeNumber;
-        for (potentialPrimeNumber=2; potentialPrimeNumber <= value; potentialPrimeNumber++) {
+        for (potentialPrimeNumber = 2; potentialPrimeNumber <= value; potentialPrimeNumber++) {
             boolean isPrime = true;
             for (int i = 2; i <= sqrt(potentialPrimeNumber); i++) {
                 int mod = potentialPrimeNumber % i;
@@ -28,6 +28,15 @@ public class MathOperations {
                 inputNumber = inputNumber / primeNumbersArr.get(i);
                 i--;
             }
-        } return newArray;
+        }
+        return newArray;
+    }
+
+    static int calculateFactorial(int n) {
+        int result = 1;
+        for (int i = 1; i <= n; i++) {
+            result = result * i;
+        }
+        return result;
     }
 }

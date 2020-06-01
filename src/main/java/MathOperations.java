@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Map;
 
 import static java.lang.StrictMath.sqrt;
 
@@ -38,5 +39,16 @@ public class MathOperations {
             result = result * i;
         }
         return result;
+    }
+
+
+    public static int findNOD(int valueA, int valueB) {
+        Map<Integer, Integer> primeNumbersMapA = Converter.convertToMap(MathOperations.primeFactorization(valueA));
+        Map<Integer, Integer> primeNumbersMapB = Converter.convertToMap(MathOperations.primeFactorization(valueB));
+        Map<Integer, Integer> repetitiveNumbers = Operations.findRepetitiveNumbers(primeNumbersMapA, primeNumbersMapB);
+        int NOD = 1;
+        for (int primeNumber : repetitiveNumbers.keySet())
+            NOD *= Math.pow(primeNumber, repetitiveNumbers.get(primeNumber));
+        return NOD;
     }
 }

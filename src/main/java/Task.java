@@ -3,6 +3,7 @@ import java.io.IOException;
 class Task {
     public static void main(String[] args) throws InterruptedException, IOException {
 
+
         System.out.println("Здравствуйте!");
         Thread.sleep(2000);
         String userName = UserInput.getUserName();
@@ -10,7 +11,7 @@ class Task {
         while (true) {
             Operations.cases(userName);
             String message = "Хотите ли вы продолжить операции? \n1 - да \n2 - нет";
-            int A = UserInput.getIntFromConsole(message, 1, 2, false, true);
+            int A = UserInput.getIntFromConsole(message, 1, 2, false);
             if (A == 2) {
                 return;
             }

@@ -1,7 +1,5 @@
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Set;
+import java.util.*;
 
 
 public class Operations {
@@ -28,8 +26,8 @@ public class Operations {
 
     public static void case1(String userName) {
 
-        int valueA = UserInput.getIntFromConsole(Task.createInputRequest(userName, "первое"), true, true);
-        int valueB = UserInput.getIntFromConsole(Task.createInputRequest(userName, "второе"), true, true);
+        int valueA = UserInput.getIntFromConsole(Task.createInputRequest(userName, "первое"), true);
+        int valueB = UserInput.getIntFromConsole(Task.createInputRequest(userName, "второе"), true);
         if (valueA == valueB) {
             System.out.println("\nЧисла равны");
             return;
@@ -40,127 +38,86 @@ public class Operations {
 
     public static void case2(String userName) {
 
-        int valueA = UserInput.getIntFromConsole(Task.createInputRequest(userName, "первое"), false, false);
-        int valueB = UserInput.getIntFromConsole(Task.createInputRequest(userName, "второе"), false, false);
-        int valueC = UserInput.getIntFromConsole(Task.createInputRequest(userName, "третье"), false, false);
-        int valueD = UserInput.getIntFromConsole(Task.createInputRequest(userName, "четвёртое"), false, false);
+        int valueA = UserInput.getIntFromConsole(Task.createInputRequest(userName, "первое"), false);
+        int valueB = UserInput.getIntFromConsole(Task.createInputRequest(userName, "второе"), false);
+        int valueC = UserInput.getIntFromConsole(Task.createInputRequest(userName, "третье"), false);
+        int valueD = UserInput.getIntFromConsole(Task.createInputRequest(userName, "четвёртое"), false);
 
-        int maxAB = Math.max(valueA, valueB);
-        int maxCD = Math.max(valueC, valueD);
-        int absoluteMax = Math.max(maxAB, maxCD);
-
-        int minAB = Math.min(valueA, valueB);
-        int minCD = Math.min(valueC, valueD);
-        int absoluteMin = Math.min(minAB, minCD);
+        int absoluteMax = Math.max(Math.max(valueA, valueB), Math.max(valueC, valueD));
+        int absoluteMin = Math.min(Math.min(valueA, valueB), Math.min(valueC, valueD));
 
         System.out.println("Наибольшее число: " + absoluteMax +
                 " возводим в степень равную наименьшему числу: " + absoluteMin);
-        System.out.println(Math.pow(absoluteMax, absoluteMin));
+        System.out.print(Math.pow(absoluteMax, absoluteMin));
     }
 
 
     public static void case3(String userName) {
-        int valueA = UserInput.getIntFromConsole(Task.createInputRequest(userName, "первое число"), false, false);
-        int valueB = UserInput.getIntFromConsole(Task.createInputRequest(userName, "второе число"), false, false);
-        ArrayList<Integer> arrayA = MathOperations.primeFactorization(valueA);
-        ArrayList<Integer> arrayB = MathOperations.primeFactorization(valueB);
+        int valueA = UserInput.getIntFromConsole(Task.createInputRequest(userName, "первое"), false);
+        int valueB = UserInput.getIntFromConsole(Task.createInputRequest(userName, "второе"), false);
 
-        HashMap<Integer, Integer> mapA = new HashMap<>();
-        HashMap<Integer, Integer> mapB = new HashMap<>();
 
-        for (int key : arrayA) {
-            int oldValue = 0;
-            try {
-                oldValue = mapA.get(key);
-            } catch (Exception ignored) {
-            }
-            int newValue = oldValue + 1;
-            mapA.put(key, newValue);
-        }
-        for (int key : arrayB) {
-            int value = 0;
-            try {
-                value = mapB.get(key);
-            } catch (Exception ignored) {
-            }
-            mapB.put(key, value + 1);
-        }
-        Set<Integer> keySet = mapA.keySet();
-        HashMap<Integer, Integer> resultMap = new HashMap<>();
-        for (int key : keySet) {
-            int aValues = 0;
-            int bValues = 0;
-            try {
-                aValues = mapA.get(key);
-                bValues = mapB.get(key);
-            } catch (Exception ignored) {
-            }
-            if (aValues == 0 || bValues == 0) {
-                continue;
-            }
-            resultMap.put(key, Math.min(aValues, bValues));
-        }
-        Set<Integer> keySet2 = resultMap.keySet();
-        int NOD = 1;
-        for (int key : keySet2) {
-            NOD *= Math.pow(key, resultMap.get(key));
-        }
-        System.out.println("NOD=" + NOD);
+        int NOD = MathOperations.findNOD(valueA, valueB);
         int NOK = valueA * valueB / NOD;
+        System.out.println("NOD=" + NOD);
         System.out.println("NOK=" + NOK);
     }
 
 
     public static void case4(String userName) {
-        int valueA = UserInput.getIntFromConsole(Task.createInputRequest(userName, "первое число"), true, true);
-        int valueB = UserInput.getIntFromConsole(Task.createInputRequest(userName, "второе число"), false, true);
+        int valueA = UserInput.getIntFromConsole(Task.createInputRequest(userName, "первое"), true);
+        int valueB = UserInput.getIntFromConsole(Task.createInputRequest(userName, "второе"), false);
 
-        BaseOperationsResult result = calculateBaseOperations(valueA, valueB);
+        BaseOperationsResult result = BaseOperationsResult.calculateBaseOperations(valueA, valueB);
         System.out.println("Произведение=" + result.derivative);
         System.out.println("Частное=" + result.quotient);
         System.out.println("Сумма=" + result.sum);
-        System.out.println("Разноцть=" + result.residual);
+        System.out.println("Разноcть=" + result.residual);
         System.out.println("Остаток от деления=" + result.mod);
     }
 
 
     public static void case5(String userName) {
-        int valueA = UserInput.getIntFromConsole(Task.createInputRequest(userName, "первое число"), true, true);
-        int valueB = UserInput.getIntFromConsole(Task.createInputRequest(userName, "второе число"), false, true);
+        int valueA = UserInput.getIntFromConsole(Task.createInputRequest(userName, "первое"), true);
+        int valueB = UserInput.getIntFromConsole(Task.createInputRequest(userName, "второе"), false);
 
-        BaseOperationsResult result = calculateBaseOperations(valueA, valueB);
+        BaseOperationsResult result = BaseOperationsResult.calculateBaseOperations(valueA, valueB);
         System.out.println(result.derivative + result.quotient + result.sum + result.residual + result.mod);
     }
 
 
     public static void case6(String userName) {
-        int valueA = UserInput.getIntFromConsole(Task.createInputRequest(userName, "первое число"), true, false);
-        int valueB = UserInput.getIntFromConsole(Task.createInputRequest(userName, "второе число"), false, false);
-        if (valueA > valueB) {
-            int AminusB = valueA - valueB;
-            int outputAminusB = MathOperations.calculateFactorial(AminusB);
-            System.out.println(outputAminusB);
-        }
-        if (valueB > valueA) {
-            int BminusA = valueB - valueA;
-            int outputBminusA = MathOperations.calculateFactorial(BminusA);
-            System.out.println(outputBminusA);
-        }
+        int valueA = UserInput.getIntFromConsole(Task.createInputRequest(userName, "первое"),
+                true);
+        int valueB = UserInput.getIntFromConsole(Task.createInputRequest(userName, "второе"),
+                false);
+
         if (valueA == valueB) {
             System.out.println("0");
+            return;
         }
+        int factorial = MathOperations.calculateFactorial(Math.max(valueA, valueB) - Math.min(valueA, valueB));
+        System.out.println(factorial);
     }
 
-    public static BaseOperationsResult calculateBaseOperations(int valueA, int valueB) {
-        BaseOperationsResult result;
-        result = new BaseOperationsResult();
 
-        result.derivative = (long) valueA * valueB;
-        result.quotient = (double) valueA / valueB;
-        result.sum = (long) valueA + valueB;
-        result.residual = valueA - valueB;
-        result.mod = valueA % valueB;
-        return result;
+    public static Map<Integer, Integer> findRepetitiveNumbers(Map<Integer, Integer> mapA, Map<Integer, Integer> mapB) {
+        Map<Integer, Integer> repetitiveNumbers = new HashMap<>();
+        Set<Integer> uniquePrimeNumbers = mapA.keySet();
+        for (int primeNumber : uniquePrimeNumbers) {
+            int quantityOfValuesA = 0;
+            int quantityOfValuesB = 0;
+            try {
+                quantityOfValuesA = mapA.get(primeNumber);
+                quantityOfValuesB = mapB.get(primeNumber);
+            } catch (Exception ignored) {
+            }
+            if (quantityOfValuesA == 0 || quantityOfValuesB == 0) {
+                continue;
+            }
+            repetitiveNumbers.put(primeNumber, Math.min(quantityOfValuesA, quantityOfValuesB));
+        }
+        return repetitiveNumbers;
     }
 }
 //switch case - изучить и применить

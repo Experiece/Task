@@ -3,8 +3,7 @@ import java.util.*;
 
 
 public class Operations {
-    // toDo придумать более удачное название для cases
-    public static void cases(String userName) throws IOException {
+    public static void possibleOperations(String userName) throws IOException {
         int userChoice = UserInput.getUserChoice(userName);
         switch (userChoice) {
             case (1) -> case1(userName);
@@ -17,7 +16,7 @@ public class Operations {
                 String messageTemplate = "Ошибка!\n" +
                         "Введенные пользователем данные не попадают в область допустимых значений.\n" +
                         "Ожидаемое значение: от 1 до 6\n" +
-                        "Реальное значение: %s";
+                        "Реальное значение: %s"; //TODO не работает так как надо, надо починить
                 throw new RuntimeException(String.format(messageTemplate, userChoice));
             }
         }
@@ -25,7 +24,7 @@ public class Operations {
 
 
     public static void case1(String userName) {
-
+        System.out.println("Требуется ввести 2 числа\n\n");
         int valueA = UserInput.getIntFromConsole(Task.createInputRequest(userName, "первое"), true);
         int valueB = UserInput.getIntFromConsole(Task.createInputRequest(userName, "второе"), true);
         if (valueA == valueB) {
@@ -37,7 +36,7 @@ public class Operations {
 
 
     public static void case2(String userName) {
-
+        System.out.println("Требуется ввести 4 числа\n\n");
         int valueA = UserInput.getIntFromConsole(Task.createInputRequest(userName, "первое"), false);
         int valueB = UserInput.getIntFromConsole(Task.createInputRequest(userName, "второе"), false);
         int valueC = UserInput.getIntFromConsole(Task.createInputRequest(userName, "третье"), false);
@@ -53,6 +52,7 @@ public class Operations {
 
 
     public static void case3(String userName) {
+        System.out.println("Требуется ввести 2 числа\n\n");
         int valueA = UserInput.getIntFromConsole(Task.createInputRequest(userName, "первое"), false);
         int valueB = UserInput.getIntFromConsole(Task.createInputRequest(userName, "второе"), false);
 
@@ -65,19 +65,21 @@ public class Operations {
 
 
     public static void case4(String userName) {
+        System.out.println("Требуется ввести 2 числа\n\n");
         int valueA = UserInput.getIntFromConsole(Task.createInputRequest(userName, "первое"), true);
         int valueB = UserInput.getIntFromConsole(Task.createInputRequest(userName, "второе"), false);
 
         BaseOperationsResult result = BaseOperationsResult.calculateBaseOperations(valueA, valueB);
-        System.out.println("Произведение=" + result.derivative);
-        System.out.println("Частное=" + result.quotient);
-        System.out.println("Сумма=" + result.sum);
-        System.out.println("Разноcть=" + result.residual);
-        System.out.println("Остаток от деления=" + result.mod);
+        System.out.println("Произведение =" + result.derivative);
+        System.out.println("Частное =" + result.quotient);
+        System.out.println("Сумма =" + result.sum);
+        System.out.println("Разность =" + result.residual);
+        System.out.println("Остаток от деления =" + result.mod);
     }
 
 
     public static void case5(String userName) {
+        System.out.println("Требуется ввести 2 числа\n\n");
         int valueA = UserInput.getIntFromConsole(Task.createInputRequest(userName, "первое"), true);
         int valueB = UserInput.getIntFromConsole(Task.createInputRequest(userName, "второе"), false);
 
@@ -87,10 +89,9 @@ public class Operations {
 
 
     public static void case6(String userName) {
-        int valueA = UserInput.getIntFromConsole(Task.createInputRequest(userName, "первое"),
-                true);
-        int valueB = UserInput.getIntFromConsole(Task.createInputRequest(userName, "второе"),
-                false);
+        System.out.println("Требуется ввести 2 числа\n\n");
+        int valueA = UserInput.getIntFromConsole(Task.createInputRequest(userName, "первое"), true);
+        int valueB = UserInput.getIntFromConsole(Task.createInputRequest(userName, "второе"), false);
 
         if (valueA == valueB) {
             System.out.println("0");

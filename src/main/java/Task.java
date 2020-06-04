@@ -9,8 +9,8 @@ class Task {
         String userName = UserInput.getUserName();
 
         while (true) {
-            Operations.cases(userName);
-            String message = "Хотите ли вы продолжить операции? \n1 - да \n2 - нет";
+            Operations.possibleOperations(userName);
+            String message = "\nХотите ли вы продолжить операции? \n1 - да \n2 - нет";
             int A = UserInput.getIntFromConsole(message, 1, 2, false);
             if (A == 2) {
                 return;
@@ -24,7 +24,3 @@ class Task {
         return String.format(messageTemplate, userName, inputName);
     }
 }
-// объеденить все в один цикл, сделать дополнительную проверку в одном цикле(try+catch/if)
-// меняй isInputCorrect
-// в нужный момент использовать break/continue
-// использовать дебагер(следуй шаг за шагом отследивая значения переменных(состояние программы))

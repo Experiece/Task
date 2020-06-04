@@ -8,7 +8,7 @@ public class Converter {
         try {
             outputValue = Integer.parseInt(inputValue);
         } catch (Exception y) {
-            System.out.println("Ошибка: число должно принадлежать промежутку от 0 до 2147483647, попробуйте ещё раз");
+            System.out.println("Ошибка, введите число от 0 до 2147483647");
             throw new RuntimeException();
         }
         return outputValue;

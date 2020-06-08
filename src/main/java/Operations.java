@@ -24,7 +24,7 @@ public class Operations {
 
 
     public static void case1(String userName) {
-        System.out.println("Требуется ввести 2 числа\n\n");
+        System.out.println("Требуется ввести 2 числа\n");
         int valueA = UserInput.getIntFromConsole(Task.createInputRequest(userName, "первое"), true);
         int valueB = UserInput.getIntFromConsole(Task.createInputRequest(userName, "второе"), true);
         if (valueA == valueB) {
@@ -36,7 +36,7 @@ public class Operations {
 
 
     public static void case2(String userName) {
-        System.out.println("Требуется ввести 4 числа\n\n");
+        System.out.println("Требуется ввести 4 числа\n");
         int valueA = UserInput.getIntFromConsole(Task.createInputRequest(userName, "первое"), false);
         int valueB = UserInput.getIntFromConsole(Task.createInputRequest(userName, "второе"), false);
         int valueC = UserInput.getIntFromConsole(Task.createInputRequest(userName, "третье"), false);
@@ -52,7 +52,7 @@ public class Operations {
 
 
     public static void case3(String userName) {
-        System.out.println("Требуется ввести 2 числа\n\n");
+        System.out.println("Требуется ввести 2 числа\n");
         int valueA = UserInput.getIntFromConsole(Task.createInputRequest(userName, "первое"), false);
         int valueB = UserInput.getIntFromConsole(Task.createInputRequest(userName, "второе"), false);
 
@@ -65,7 +65,7 @@ public class Operations {
 
 
     public static void case4(String userName) {
-        System.out.println("Требуется ввести 2 числа\n\n");
+        System.out.println("Требуется ввести 2 числа\n");
         int valueA = UserInput.getIntFromConsole(Task.createInputRequest(userName, "первое"), true);
         int valueB = UserInput.getIntFromConsole(Task.createInputRequest(userName, "второе"), false);
 
@@ -79,7 +79,7 @@ public class Operations {
 
 
     public static void case5(String userName) {
-        System.out.println("Требуется ввести 2 числа\n\n");
+        System.out.println("Требуется ввести 2 числа\n");
         int valueA = UserInput.getIntFromConsole(Task.createInputRequest(userName, "первое"), true);
         int valueB = UserInput.getIntFromConsole(Task.createInputRequest(userName, "второе"), false);
 
@@ -89,7 +89,7 @@ public class Operations {
 
 
     public static void case6(String userName) {
-        System.out.println("Требуется ввести 2 числа\n\n");
+        System.out.println("Требуется ввести 2 числа\n");
         int valueA = UserInput.getIntFromConsole(Task.createInputRequest(userName, "первое"), true);
         int valueB = UserInput.getIntFromConsole(Task.createInputRequest(userName, "второе"), false);
 

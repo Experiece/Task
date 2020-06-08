@@ -1,3 +1,4 @@
+import javax.crypto.spec.PSource;
 import java.io.IOException;
 
 class Task {
@@ -10,8 +11,8 @@ class Task {
 
         while (true) {
             Operations.possibleOperations(userName);
-            String message = "\nХотите ли вы продолжить операции? \n1 - да \n2 - нет";
-            int A = UserInput.getIntFromConsole(message, 1, 2, false);
+            String message = ", хотите ли вы продолжить операции? \n1 - да \n2 - нет";
+            int A = UserInput.getIntFromConsole(userName + message, 1, 2, false);
             if (A == 2) {
                 return;
             }

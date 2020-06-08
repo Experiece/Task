@@ -18,6 +18,7 @@ public class UserInput {
 
 
     public static int getIntFromConsole(String consoleMessage, int minValue, int maxValue, boolean isCanBeZero) {
+
         int outputValue = 0;
         boolean isInputCorrect = false;
         while (!isInputCorrect) {
@@ -40,7 +41,7 @@ public class UserInput {
     }
 
 
-    public static int getUserChoice(String userName) throws IOException {
+    public static int getUserChoice(String userName) {
         String message = (userName + ", выберите тип операции которую вы хотите совершить над числами:" +
                 "\n1) Узнать наибольшее из двух чисел" +
                 "\n2) Вычислить значение наибольшего числа возведенного в степень наименьшего из 4 введенных чисел(различных, не равных 0)" +

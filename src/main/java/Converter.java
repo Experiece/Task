@@ -5,10 +5,12 @@ import java.util.Map;
 public class Converter {
     public static int convertToInt(String inputValue) {
         int outputValue;
+        if (inputValue.matches("[\\w*]")) {
+            System.out.println("Ошибка. Пожалуйста введите натуральное число.\n");
+        }
         try {
             outputValue = Integer.parseInt(inputValue);
         } catch (Exception y) {
-            System.out.println("Ошибка, введите число от 0 до 2147483647");
             throw new RuntimeException();
         }
         return outputValue;
